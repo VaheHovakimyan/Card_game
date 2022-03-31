@@ -25,10 +25,10 @@ body{
     color: rgba(0, 0, 0, 0);
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("./Frame\ 2\ \(14\).png");
+    background-image: url("./front.png");
 }
-.card_back{
+/* .card_back{
     width: 100px;
     height: 100px;
     background-color: navy;
-}
+} */
