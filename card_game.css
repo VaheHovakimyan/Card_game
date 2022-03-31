@@ -8,8 +8,8 @@ body{
     height: 100vh;
 }
 .card_div{
-    width: 636px;
-    height: 412px;
+    width: 684px;
+    height: 456px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -17,8 +17,12 @@ body{
 .card{
     width: 100px;
     height: 100px;
-    color: white;
-    background-color: black;
-    border: 3px white solid;
+    color: rgba(0, 0, 0, 0);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("./Frame\ 2\ \(14\).png");
+    /* border: 6px white solid; */
+    margin: 6px;
+    border: 1px rgba(0, 0, 0, 0.5) solid;
     cursor: pointer;
 }
