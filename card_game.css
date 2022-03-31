@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.card_div{
+    width: 636px;
+    height: 412px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.card{
+    width: 100px;
+    height: 100px;
+    color: white;
+    background-color: black;
+    border: 3px white solid;
+    cursor: pointer;
+}
