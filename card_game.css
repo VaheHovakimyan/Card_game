@@ -15,14 +15,20 @@ body{
     align-items: center;
 }
 .card{
+    margin: 6px;
+    border: 1px rgba(0, 0, 0, 0.5) solid;
+    cursor: pointer;
+}
+.card_front{
     width: 100px;
     height: 100px;
     color: rgba(0, 0, 0, 0);
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url("./Frame\ 2\ \(14\).png");
-    /* border: 6px white solid; */
-    margin: 6px;
-    border: 1px rgba(0, 0, 0, 0.5) solid;
-    cursor: pointer;
+}
+.card_back{
+    width: 100px;
+    height: 100px;
+    background-color: navy;
 }
