@@ -68,6 +68,6 @@ body{
     text-align: center;
     transform: rotateY(180deg);
 }
-.card:hover{
+/* .card:active{
     transform: rotateY(180deg);
-}
+} */
