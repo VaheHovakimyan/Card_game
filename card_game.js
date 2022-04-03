@@ -21,5 +21,6 @@ function Card_flip(){
 
 current_card.addEventListener("click",Card_flip);
 
+let leg;
 ///////////////////////////////////////////////////////////////
 
