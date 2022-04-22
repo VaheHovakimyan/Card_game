@@ -125,7 +125,7 @@ const Cards_flip = () => {
                                 `
                                 score++;
                                 
-                                if(true){
+                                if(score == 12){
                                     end_game.style.top = "30%";
                                 
                                 }
