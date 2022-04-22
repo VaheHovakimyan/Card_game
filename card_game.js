@@ -1,41 +1,42 @@
 //<<<<<<< HEAD
-let random_num = Math.floor(Math.random() * 24);
-let bool = true;
-let a = [];
-let b = [];
-let Red = Math.floor(Math.random() * 255);
-let Blue = Math.floor(Math.random() * 255)
-let Green = Math.floor(Math.random() * 255)
+
 let BackCards = []
+let apple = 'url(./images/apple.png)'
+let banana = 'url(./images/banana.png)'
+let blackberries = 'url(./images/blackberries.png)'
+let grapes = 'url(./images/grapes.png)'
+let kiwi = 'url(./images/kiwi.png)'
+let lemon = 'url(./images/lemon.png)'
+let lime = 'url(./images/lime.png)'
+let orange = 'url(./images/orange.png)'
+let pear = 'url(./images/pear.png)'
+let rosehip = 'url(./images/rosehip.png)'
+let strawberry = 'url(./images/strawberry.png)'
+let watermelon = 'url(./images/watermelon.png)'
 
+let fruits_arr = [apple, banana, blackberries, grapes, kiwi, lemon, lime, orange, pear, rosehip, strawberry, watermelon];
 
-let apple = "url(./images/apple.png)"
-let banana =  'url(./images/banana.png)'
-let blackberries =  'url(./images/blackberries.png)'
-let grapes =  'url(./images/grapes.png)'
-let kiwi =  'url(./images/kiwi.png)'
-let lemon =  'url(./images/lemon.png)'
-let lime =  'url(./images/lime.png)'
-let orange =  'url(./images/orange.png)'
-let pear =  'url(./images/pear.png)'
-let roseship =  'url(./images/roseship.png)'
-let strawberry =  'url(./images/strawberry.png)'
-let watermelon =  'url(./images/watermelon.png)'
+let score = 0;
 
-let fruits_arr = [apple,banana,blackberries,grapes,kiwi,lemon,lime,orange,pear,roseship,strawberry,watermelon];
+let game_end = document.getElementById("end_game");
+let reload_button = document.getElementById("game_reload");
 
-// console.log(fruits_arr);
-
+function Reload_game(){
+    document.location.reload();
+}
+reload_button.addEventListener("click",Reload_game);
 
 // ///////////////////////////////////////////////////////////////
 let FirstPartNumsArray = [];
 let SecondPartNumsArray = [];
 
-for (let i = 0; i <= 12; i++) {
+for (let i = 0; i < 12; i++) {
     FirstPartNumsArray.push(i);
     SecondPartNumsArray.push(i)
 }
 
+
+let RandomNumsArr = RandNumbers([...FirstPartNumsArray, ...SecondPartNumsArray]);
 function RandNumbers(array) {
 
     let j = 0;
@@ -51,9 +52,8 @@ function RandNumbers(array) {
     return array;
 }
 
-let RandomNumsArr = [...RandNumbers(FirstPartNumsArray), ...RandNumbers(SecondPartNumsArray)]
-
 console.log(RandomNumsArr);
+
 
 let indexOfCards = [];
 let cards = [];
@@ -64,36 +64,96 @@ for (let i = 0; i <= 23; i++) {
 }
 
 
-//debugger
-let done_array = [];
-
-for (let i = 0; i <= 23; i++) {
-    BackCards[i].style.backgroundImage = fruits_arr[RandomNumsArr[i]];
-}
-//console.log(done_array);
 const RandomCOlorsofCards = () => {
 
     BackCards.forEach((item, index) => {
 
+
         indexOfCards.forEach(num => {
+
             if (index == num) {
-                item.style.backgroundImage = fruits_arr[index]
-                item.style.backgroundSize = "cover"
+                item.style = `
+                background-image :${fruits_arr[RandomNumsArr[index]]};
+                background-size:cover;
+                
+                `
             }
         })
+
+
     })
+
+
 }
 
 
-
 const Cards_flip = () => {
+
+    let current = []
+
+
     cards.forEach((it, index) => {
-        it.addEventListener("click", () => {
+
+        it.ariaValueNow = RandomNumsArr[index]
+        it.addEventListener("click", function () {
             indexOfCards.forEach(num => {
                 if (index == num) {
                     it.style = `
                     transform:rotateY(180deg);
-                    `;
+                    pointer-events: none;
+                    `
+                    current.push(it);
+                    console.log(current.length);
+                    
+                     if (current.length % 2 === 0/* && current[0] !== undefined && current[1] !== undefined*/) {
+
+                        setTimeout(() => {
+
+
+
+                            if (+current[0].ariaValueNow === +current[1].ariaValueNow) {
+                                current[0].style = `
+                                visibility: hidden;
+                                opacity:0;
+                                transition: opacity 0s;
+                                `;
+
+                                current[1].style = `
+                                visibility: hidden;
+                                opacity:0;
+                                transition: opacity 0s;
+                                `
+                                score++;
+                                
+                                if(true){
+                                    end_game.style.top = "30%";
+                                
+                                }
+                                
+                                /*return*/
+
+                            } else {
+
+                                current[0].style = `
+
+                                transform:rotateY(0deg);
+
+                                `
+
+                                    ;
+                                current[1].style = `
+
+                                transform:rotateY(0deg);
+                                `
+
+
+                            }
+                            current = []
+                        }, 500)
+
+
+                    }
+
                 }
             })
         });
@@ -101,7 +161,8 @@ const Cards_flip = () => {
     )
 }
 
+// score = 12
+
 Cards_flip();
 RandomCOlorsofCards();
 
-///////////////////////////////////////////////////////////////
