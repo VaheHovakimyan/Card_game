@@ -1,6 +1,6 @@
 //<<<<<<< HEAD
 
-let BackCards = []
+let BackCards = [];
 let apple = 'url(./images/apple.png)'
 let banana = 'url(./images/banana.png)'
 let blackberries = 'url(./images/blackberries.png)'
@@ -64,10 +64,10 @@ for (let i = 0; i <= 23; i++) {
 }
 
 
+
 const RandomCOlorsofCards = () => {
 
     BackCards.forEach((item, index) => {
-
 
         indexOfCards.forEach(num => {
 
@@ -80,89 +80,98 @@ const RandomCOlorsofCards = () => {
             }
         })
 
-
     })
 
-
 }
+
+let timer;
 
 
 const Cards_flip = () => {
 
-    let current = []
+    let current = [];
 
 
     cards.forEach((it, index) => {
 
-        it.ariaValueNow = RandomNumsArr[index]
+        it.current_value = RandomNumsArr[index];
         it.addEventListener("click", function () {
             indexOfCards.forEach(num => {
                 if (index == num) {
                     it.style = `
+                    transition: 0.8s ease;
                     transform:rotateY(180deg);
                     pointer-events: none;
                     `
-                    current.push(it);
-                    console.log(current.length);
-                    
-                     if (current.length % 2 === 0/* && current[0] !== undefined && current[1] !== undefined*/) {
+                    if(current.length < 2){
+                        current.push(it);
+                    }
+                    console.log(current);
+                    //console.log(current.length);
+                     if (current.length == 2) {
+                        //  cards.forEach((itt) => {
+                        //     itt.style = `
+                        //     pointer-events: none;
+                        //     `
+                        //  })
 
-                        setTimeout(() => {
-
-
-
-                            if (+current[0].ariaValueNow === +current[1].ariaValueNow) {
+                        /* function Check(){*/timer = setTimeout(() =>{
+                            if (+current[0].current_value === +current[1].current_value) {
                                 current[0].style = `
                                 visibility: hidden;
                                 opacity:0;
-                                transition: opacity 0s;
+                                transition: 0.5s ease;
+                                transform: rotateY(90deg);
+                                pointer-events: none;
                                 `;
 
                                 current[1].style = `
                                 visibility: hidden;
                                 opacity:0;
-                                transition: opacity 0s;
+                                transition: 0.5s ease;
+                                transform: rotateY(90deg);
+                                pointer-events: none;
                                 `
                                 score++;
                                 
                                 if(score == 12){
                                     end_game.style.top = "30%";
-                                
                                 }
-                                
-                                /*return*/
-
+                                current = [];
+                                //clearTimeout(timer);
                             } else {
-
                                 current[0].style = `
-
+                                transition: 0.5s ease;
                                 transform:rotateY(0deg);
 
                                 `
 
                                     ;
                                 current[1].style = `
-
+                                transition: 0.5s ease;
                                 transform:rotateY(0deg);
                                 `
-
+                                current = [];
+                                //clearTimeout(timer);
 
                             }
-                            current = []
-                        }, 500)
-
+                            current = [];
+                        
+                        },1000)
+                        // cards.forEach((itt) => {
+                        //     itt.style = `
+                        //     pointer-events: auto;
+                        //     `
+                        //  })
 
                     }
 
                 }
             })
         });
-    }
-    )
+    })
 }
 
-// score = 12
 
 Cards_flip();
 RandomCOlorsofCards();
-
