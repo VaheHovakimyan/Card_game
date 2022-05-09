@@ -32,7 +32,7 @@ let SecondPartNumsArray = [];
 
 for (let i = 0; i < 12; i++) {
     FirstPartNumsArray.push(i);
-    SecondPartNumsArray.push(i)
+    SecondPartNumsArray.push(i);
 }
 
 
@@ -67,9 +67,9 @@ for (let i = 0; i <= 23; i++) {
 
 const RandomCOlorsofCards = () => {
 
-    BackCards.forEach((item, index) => {
+    BackCards.find((item, index) => {
 
-        indexOfCards.forEach(num => {
+        indexOfCards.find(num => {
 
             if (index == num) {
                 item.style = `
@@ -92,14 +92,14 @@ const Cards_flip = () => {
     let current = [];
 
 
-    cards.forEach((it, index) => {
+    cards.find((it, index) => {
 
         it.current_value = RandomNumsArr[index];
         it.addEventListener("click", function () {
             indexOfCards.forEach(num => {
                 if (index == num) {
                     it.style = `
-                    transition: 0.8s ease;
+                    // transition: 0.5s ease;
                     transform:rotateY(180deg);
                     pointer-events: none;
                     `
@@ -115,11 +115,11 @@ const Cards_flip = () => {
                         //     `
                         //  })
 
-                        /* function Check(){*/timer = setTimeout(() =>{
+                        /* function Check(){*/setTimeout(() => {
                             if (+current[0].current_value === +current[1].current_value) {
                                 current[0].style = `
                                 visibility: hidden;
-                                opacity:0;
+                                opacity: 0;
                                 transition: 0.5s ease;
                                 transform: rotateY(90deg);
                                 pointer-events: none;
@@ -127,11 +127,11 @@ const Cards_flip = () => {
 
                                 current[1].style = `
                                 visibility: hidden;
-                                opacity:0;
+                                opacity: 0;
                                 transition: 0.5s ease;
                                 transform: rotateY(90deg);
                                 pointer-events: none;
-                                `
+                                `;
                                 score++;
                                 
                                 if(score == 12){
@@ -144,25 +144,21 @@ const Cards_flip = () => {
                                 transition: 0.5s ease;
                                 transform:rotateY(0deg);
 
-                                `
-
-                                    ;
+                                `;
                                 current[1].style = `
                                 transition: 0.5s ease;
                                 transform:rotateY(0deg);
-                                `
+                                `;
                                 current = [];
                                 //clearTimeout(timer);
-
                             }
-                            current = [];
-                        
-                        },1000)
+
                         // cards.forEach((itt) => {
                         //     itt.style = `
                         //     pointer-events: auto;
                         //     `
-                        //  })
+                        // })
+                        },500)
 
                     }
 
