@@ -69,9 +69,9 @@ for (let i = 0; i <= 23; i++) {
 
 const RandomCOlorsofCards = () => {
 
-    BackCards.find((item, index) => {
+    BackCards.map((item, index) => {
 
-        indexOfCards.find(num => {
+        indexOfCards.map(num => {
 
             if (index === num) {
                 item.style = `
@@ -168,7 +168,7 @@ const Cards_flip = (callback) => {
 
                             score++;
                     
-                            if (score == 12) {
+                            if (score === 12) {
                                 end_game.style.top = "30%";
                             }
 
@@ -177,12 +177,10 @@ const Cards_flip = (callback) => {
                             current[0].style = `
                             transition: 0.5s ease;
                             transform:rotateY(0deg);
-                            pointer-events: none;
                             `;
                             current[1].style = `
                             transition: 0.5s ease;
                             transform:rotateY(0deg);
-                            pointer-events: none;
                             `;
                             current = [];
                         }
@@ -190,7 +188,7 @@ const Cards_flip = (callback) => {
 
                     if (current.length === 2) {
                         var func = setTimeout(() => {
-                            callback(Main_logic(current))
+                            Main_logic()
                         }, 1000);
                     }else{
                         clearTimeout(func)
@@ -203,8 +201,5 @@ const Cards_flip = (callback) => {
 }
 
 
-Cards_flip(function (current) {
-    alert(current.length);
-});
-
+Cards_flip();
 RandomCOlorsofCards();
