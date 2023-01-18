@@ -28,6 +28,7 @@ function Reload_game() {
 reload_button.addEventListener("click", Reload_game);
 
 // ///////////////////////////////////////////////////////////////
+
 let FirstPartNumsArray = [];
 let SecondPartNumsArray = [];
 
@@ -46,13 +47,15 @@ function RandNumbers(array) {
 
     for (let i = array.length - 1; i > 0; i -= 1) {
 
-        j = Math.floor(Math.random() * (i + 1))
-        temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
+        j = Math.floor(Math.random() * (i + 1));
+        temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
+
     return array;
 }
+
 
 console.log(RandomNumsArr);
 
@@ -66,8 +69,7 @@ for (let i = 0; i <= 23; i++) {
 }
 
 
-
-const RandomCOlorsofCards = () => {
+const RandomColorsofCards = () => {
 
     BackCards.map((item, index) => {
 
@@ -88,112 +90,128 @@ const RandomCOlorsofCards = () => {
 
 let timer;
 
-// function Main_logic() {
-//     if (+current[0].current_value === +current[1].current_value) {
-//         current[0].style = `
-//         visibility: hidden;
-//         opacity: 0;
-//         transition: 0.5s ease;
-//         transform: rotateY(90deg);
-//         pointer-events: none;
-//         `;
+function Main_logic(current) {
+    if (+current[0].current_value === +current[1].current_value) {
+        current[0].style = `
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.5s ease;
+        transform: rotateY(90deg);
+        `;
 
-//         current[1].style = `
-//         visibility: hidden;
-//         opacity: 0;
-//         transition: 0.5s ease;
-//         transform: rotateY(90deg);
-//         pointer-events: none;
-//         `;
-//         score++;
+        current[1].style = `
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.5s ease;
+        transform: rotateY(90deg);
+        `;
 
-//         if (score == 12) {
-//             end_game.style.top = "30%";
-//         }
-//         current = [];
-//     } else {
-//         current[0].style = `
-//         transition: 0.5s ease;
-//         transform:rotateY(0deg);
+        // pointer-events: none;
 
-//         `;
-//         current[1].style = `
-//         transition: 0.5s ease;
-//         transform:rotateY(0deg);
-//         `;
-//         current = [];
-//     }
-// }
+        score++;
+
+        if (score === 12) {
+            end_game.style.top = "30%";
+        }
+
+        // current = [];
+
+    } else {
+        current[0].style = `
+        transition: 0.5s ease;
+        transform:rotateY(0deg);
+        `;
+        current[1].style = `
+        transition: 0.5s ease;
+        transform:rotateY(0deg);
+        `;
+        // current = [];
+    }
+
+    current = [];
+}
+
+
+let justpromise = new Promise(function (resolve) {
+    setTimeout(() => resolve(Main_logic), 2000);
+})
 
 
 const Cards_flip = (callback) => {
 
     let current = [];
 
-
     cards.map((it, index) => {
 
         it.current_value = RandomNumsArr[index];
+
         it.addEventListener("click", function () {
+
             indexOfCards.forEach(num => {
+
                 if (index === num) {
                     it.style = `
-                    // transition: 0.5s ease;
                     transform:rotateY(180deg);
                     pointer-events: none;
                     `
+                    // transition: 0.5s ease;
+
                     if (current.length < 2) {
                         current.push(it);
                     }
 
-                    console.log(current);
+                    console.log("current", current);
 
-                    function Main_logic() {
-                        if (+current[0].current_value === +current[1].current_value) {
-                            current[0].style = `
-                            visibility: hidden;
-                            opacity: 0;
-                            transition: 0.5s ease;
-                            transform: rotateY(90deg);
-                            pointer-events: none;
-                            `;
-                    
-                            current[1].style = `
-                            visibility: hidden;
-                            opacity: 0;
-                            transition: 0.5s ease;
-                            transform: rotateY(90deg);
-                            pointer-events: none;
-                            `;
+                    // function Main_logic() {
+                    //     if (+current[0].current_value === +current[1].current_value) {
+                    //         current[0].style = `
+                    //         visibility: hidden;
+                    //         opacity: 0;
+                    //         transition: 0.5s ease;
+                    //         transform: rotateY(90deg);
+                    //         pointer-events: none;
+                    //         `;
 
-                            score++;
-                    
-                            if (score === 12) {
-                                end_game.style.top = "30%";
-                            }
+                    //         current[1].style = `
+                    //         visibility: hidden;
+                    //         opacity: 0;
+                    //         transition: 0.5s ease;
+                    //         transform: rotateY(90deg);
+                    //         pointer-events: none;
+                    //         `;
 
-                            current = [];
-                        } else {
-                            current[0].style = `
-                            transition: 0.5s ease;
-                            transform:rotateY(0deg);
-                            `;
-                            current[1].style = `
-                            transition: 0.5s ease;
-                            transform:rotateY(0deg);
-                            `;
-                            current = [];
-                        }
-                    }
+                    //         score++;
+
+                    //         if (score === 12) {
+                    //             end_game.style.top = "30%";
+                    //         }
+
+                    //         current = [];
+                    //     } else {
+                    //         current[0].style = `
+                    //         transition: 0.5s ease;
+                    //         transform:rotateY(0deg);
+                    //         `;
+                    //         current[1].style = `
+                    //         transition: 0.5s ease;
+                    //         transform:rotateY(0deg);
+                    //         `;
+                    //         current = [];
+                    //     }
+                    // }
 
                     if (current.length === 2) {
-                        var func = setTimeout(() => {
-                            Main_logic()
-                        }, 1000);
-                    }else{
-                        clearTimeout(func)
+                        // var func = setTimeout(Main_logic, 1000);
+                        justpromise.then(function (func) {
+                            func(current);
+                            console.log("Two seconds");
+                        })
                     }
 
+                    // else {
+                    //     clearTimeout(func)
+                    // }
+                    // current = [];
                 }
             })
         });
@@ -202,4 +220,4 @@ const Cards_flip = (callback) => {
 
 
 Cards_flip();
-RandomCOlorsofCards();
+RandomColorsofCards();
