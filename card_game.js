@@ -14,7 +14,7 @@ let rosehip = 'url(./images/rosehip.png)';
 let strawberry = 'url(./images/strawberry.png)';
 let watermelon = 'url(./images/watermelon.png)';
 
-let fruits_arr = [apple, banana, blackberries, grapes, kiwi, lemon, lime, orange, pear, rosehip, strawberry, watermelon];
+let fruits_arr = [apple,banana,blackberries,grapes,kiwi,lemon,lime,orange,pear,rosehip,strawberry,watermelon];
 
 let score = 0;
 
@@ -25,7 +25,7 @@ let reload_button = document.getElementById("game_reload");
 function Reload_game() {
     document.location.reload();
 }
-reload_button.addEventListener("click", Reload_game);
+reload_button.addEventListener("click",Reload_game);
 
 // ///////////////////////////////////////////////////////////////
 
@@ -39,7 +39,7 @@ for (let i = 0; i < 12; i++) {
 }
 
 
-let RandomNumsArr = RandNumbers([...FirstPartNumsArray, ...SecondPartNumsArray]);
+let RandomNumsArr = RandNumbers([...FirstPartNumsArray,...SecondPartNumsArray]);
 function RandNumbers(array) {
 
     let j = 0;
@@ -51,13 +51,11 @@ function RandNumbers(array) {
         temp = array[i];
         array[i] = array[j];
         array[j] = temp;
+
     }
 
     return array;
 }
-
-
-console.log(RandomNumsArr);
 
 
 let indexOfCards = [];
@@ -71,7 +69,7 @@ for (let i = 0; i <= 23; i++) {
 
 const RandomColorsofCards = () => {
 
-    BackCards.map((item, index) => {
+    BackCards.map((item,index) => {
 
         indexOfCards.map(num => {
 
@@ -79,7 +77,6 @@ const RandomColorsofCards = () => {
                 item.style = `
                 background-image :${fruits_arr[RandomNumsArr[index]]};
                 background-size:cover;
-                
                 `
             }
         })
@@ -88,130 +85,102 @@ const RandomColorsofCards = () => {
 
 }
 
+
+
 let timer;
-
-function Main_logic(current) {
-    if (+current[0].current_value === +current[1].current_value) {
-        current[0].style = `
-        visibility: hidden;
-        opacity: 0;
-        transition: 0.5s ease;
-        transform: rotateY(90deg);
-        `;
-
-        current[1].style = `
-        visibility: hidden;
-        opacity: 0;
-        transition: 0.5s ease;
-        transform: rotateY(90deg);
-        `;
-
-        // pointer-events: none;
-
-        score++;
-
-        if (score === 12) {
-            end_game.style.top = "30%";
-        }
-
-        // current = [];
-
-    } else {
-        current[0].style = `
-        transition: 0.5s ease;
-        transform:rotateY(0deg);
-        `;
-        current[1].style = `
-        transition: 0.5s ease;
-        transform:rotateY(0deg);
-        `;
-        // current = [];
-    }
-
-    current = [];
-}
-
-
-let justpromise = new Promise(function (resolve) {
-    setTimeout(() => resolve(Main_logic), 2000);
-})
+let current = [];
 
 
 const Cards_flip = (callback) => {
 
-    let current = [];
-
-    cards.map((it, index) => {
+    cards.map((it,index) => {
 
         it.current_value = RandomNumsArr[index];
 
-        it.addEventListener("click", function () {
+        it.addEventListener("click",function () {
 
             indexOfCards.forEach(num => {
 
                 if (index === num) {
+
                     it.style = `
                     transform:rotateY(180deg);
+                    transition: 1s ease;
                     pointer-events: none;
                     `
-                    // transition: 0.5s ease;
 
                     if (current.length < 2) {
                         current.push(it);
                     }
 
-                    console.log("current", current);
 
-                    // function Main_logic() {
-                    //     if (+current[0].current_value === +current[1].current_value) {
-                    //         current[0].style = `
-                    //         visibility: hidden;
-                    //         opacity: 0;
-                    //         transition: 0.5s ease;
-                    //         transform: rotateY(90deg);
-                    //         pointer-events: none;
-                    //         `;
+                    function Check() {
 
-                    //         current[1].style = `
-                    //         visibility: hidden;
-                    //         opacity: 0;
-                    //         transition: 0.5s ease;
-                    //         transform: rotateY(90deg);
-                    //         pointer-events: none;
-                    //         `;
+                        if (current.length === 2) {
 
-                    //         score++;
+                            document.body.style.pointerEvents = "none";
 
-                    //         if (score === 12) {
-                    //             end_game.style.top = "30%";
-                    //         }
+                            let promise = function () {
+                                return new Promise(function (resolve) {
+                                    setTimeout(() => { resolve(Main_logic) },1000);
+                                })
+                            }
 
-                    //         current = [];
-                    //     } else {
-                    //         current[0].style = `
-                    //         transition: 0.5s ease;
-                    //         transform:rotateY(0deg);
-                    //         `;
-                    //         current[1].style = `
-                    //         transition: 0.5s ease;
-                    //         transform:rotateY(0deg);
-                    //         `;
-                    //         current = [];
-                    //     }
-                    // }
+                            function Main_logic() {
 
-                    if (current.length === 2) {
-                        // var func = setTimeout(Main_logic, 1000);
-                        justpromise.then(function (func) {
-                            func(current);
-                            console.log("Two seconds");
-                        })
+                                console.log(current[1].current_value);
+
+                                document.body.style.pointerEvents = "auto";
+
+                                if (+current[0].current_value === +current[1].current_value) {
+
+                                    current[0].style = `
+                                    visibility: hidden;
+                                    opacity: 0;
+                                    transition: 1s ease;
+                                    transform: rotateY(90deg);
+                                    pointer-events: none;
+                                    `;
+
+                                    current[1].style = `
+                                    visibility: hidden;
+                                    opacity: 0;
+                                    transition: 1s ease;
+                                    transform: rotateY(90deg);
+                                    pointer-events: none;
+                                    `;
+
+                                    score++;
+
+                                    if (score === 12) {
+                                        end_game.style.top = "30%";
+                                    }
+
+                                } else {
+                                    current[0].style = `
+                                    transition: 1s ease;
+                                    transform:rotateY(0deg);
+                                    `;
+                                    current[1].style = `
+                                    transition: 1s ease;
+                                    transform:rotateY(0deg);
+                                    `;
+                                }
+
+                                current = [];
+
+                            }
+
+                            promise().then(function (func) {
+                                func();
+                            })
+
+                        }
+
                     }
 
-                    // else {
-                    //     clearTimeout(func)
-                    // }
-                    // current = [];
+                    Check();
+
                 }
             })
         });
