@@ -6,19 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./card_game.css">
-    <title>Card_game</title>
+    <title>Card game</title>
 </head>
 
 <body>
     <div class="end_game_flex" id="end_game_flex">
         <div class="end_game" id="end_game">
-            <p class="end_game_text">Game end</p>
+            <p class="end_game_text" id="end_game_text">Game end</p>
             <div class="button_flex">
                 <button class="game_reload" id="game_reload">Try again</button>
             </div>
         </div>
+        <!--
+            name="select_level" 
+                id="select_level" 
+             -->
     </div>
     <div class="main">
+
+        <div class="level_and_turns">
+            <div id="levels">
+                Levels:
+                <select id="select_level" onchange="findOption(this)">
+                    <option value="easy" id="option">Easy</option>
+                    <option value="middle" id="option">Middle</option>
+                    <option value="hard" id="option">Hard</option>
+                </select>
+            </div>
+            <div class="turns" id="turns">
+                Turns:
+            </div>
+        </div>
+
         <div class="card_div">
 
             <div class="card" id="card0" aria-valuenow="0">
@@ -117,7 +136,7 @@
                 <div class="card_front"></div>
                 <div class="card_back" id="card_back23"> </div>
             </div>
-           
+
         </div>
     </div>
 

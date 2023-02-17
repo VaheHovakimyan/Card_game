@@ -1,5 +1,44 @@
 //<<<<<<< HEAD
 
+// Select and Turns count container
+
+let select_level = document.getElementById("select_level");
+let turns = document.getElementById("turns");
+let turns_count = 40;
+
+
+function findOption(select) {
+
+    const option = select.querySelector(`option[value="${select.value}"]`);
+
+    switch (option.value) {
+        case "easy":
+            turns_count = 40;
+            break;
+        case "middle":
+            turns_count = 30;
+            break;
+        case "hard":
+            turns_count = 20;
+            break;
+        default:
+            alert("Error")
+            break;
+    }
+
+    TurnsCountText();
+
+}
+
+function TurnsCountText(){
+    turns.innerText = "Turns: " + turns_count;
+}
+
+TurnsCountText();
+
+
+// Fruit images 
+
 let BackCards = [];
 let apple = 'url(./images/apple.png)';
 let banana = 'url(./images/banana.png)';
@@ -22,12 +61,17 @@ let game_end = document.getElementById("end_game");
 let reload_button = document.getElementById("game_reload");
 
 
+// Reload game function
+
+let end_game_text = document.getElementById("end_game_text");
+
 function Reload_game() {
     document.location.reload();
 }
 reload_button.addEventListener("click",Reload_game);
 
-// ///////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////
 
 let FirstPartNumsArray = [];
 let SecondPartNumsArray = [];
@@ -40,6 +84,7 @@ for (let i = 0; i < 12; i++) {
 
 
 let RandomNumsArr = RandNumbers([...FirstPartNumsArray,...SecondPartNumsArray]);
+
 function RandNumbers(array) {
 
     let j = 0;
@@ -67,6 +112,8 @@ for (let i = 0; i <= 23; i++) {
 }
 
 
+// Random cards images function
+
 const RandomColorsofCards = () => {
 
     BackCards.map((item,index) => {
@@ -75,8 +122,8 @@ const RandomColorsofCards = () => {
 
             if (index === num) {
                 item.style = `
-                background-image :${fruits_arr[RandomNumsArr[index]]};
-                background-size:cover;
+                background-image: ${fruits_arr[RandomNumsArr[index]]};
+                background-size: cover;
                 `
             }
         })
@@ -86,8 +133,8 @@ const RandomColorsofCards = () => {
 }
 
 
+// Card flip and Check functions
 
-let timer;
 let current = [];
 
 
@@ -126,9 +173,17 @@ const Cards_flip = (callback) => {
                                 })
                             }
 
+
                             function Main_logic() {
 
-                                console.log(current[1].current_value);
+                                select_level.disabled = true;
+                                turns_count--;
+                                TurnsCountText();
+
+                                if(turns_count <= 0){
+                                    end_game_text.innerText = "You are lose!"; 
+                                    end_game.style.top = "30%";
+                                }
 
                                 document.body.style.pointerEvents = "auto";
 
@@ -153,6 +208,7 @@ const Cards_flip = (callback) => {
                                     score++;
 
                                     if (score === 12) {
+                                        end_game_text.innerText = "You are win!"; 
                                         end_game.style.top = "30%";
                                     }
 

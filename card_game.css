@@ -4,8 +4,16 @@ body{
 .main{
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
+}
+.level_and_turns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 650px;
+    user-select: none;
 }
 .card_div{
     width: 684px;
