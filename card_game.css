@@ -15,6 +15,11 @@ body{
     width: 650px;
     user-select: none;
 }
+
+.open_all_cards{
+    cursor: pointer;
+}
+
 .card_div{
     width: 684px;
     height: 456px;

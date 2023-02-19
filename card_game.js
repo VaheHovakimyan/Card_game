@@ -4,7 +4,9 @@
 
 let select_level = document.getElementById("select_level");
 let turns = document.getElementById("turns");
+let open_all_cards_button = document.getElementById("open_all_cards");
 let turns_count = 40;
+let open_all_cards_count = 2;
 
 
 function findOption(select) {
@@ -14,12 +16,15 @@ function findOption(select) {
     switch (option.value) {
         case "easy":
             turns_count = 40;
+            open_all_cards_count = 2;
             break;
         case "middle":
             turns_count = 30;
+            open_all_cards_count = 1;
             break;
         case "hard":
             turns_count = 20;
+            open_all_cards_count = 0;
             break;
         default:
             alert("Error")
@@ -27,14 +32,21 @@ function findOption(select) {
     }
 
     TurnsCountText();
+    OpenAllCardsText();
 
 }
 
-function TurnsCountText(){
+function TurnsCountText() {
     turns.innerText = "Turns: " + turns_count;
 }
 
 TurnsCountText();
+
+function OpenAllCardsText() {
+    open_all_cards_button.innerText = "Open all cards " + `(${open_all_cards_count})`;
+}
+
+OpenAllCardsText();
 
 
 // Fruit images 
@@ -132,6 +144,36 @@ const RandomColorsofCards = () => {
 
 }
 
+// Open cards function
+
+function OpenAllCards() {
+    if (open_all_cards_count > 0) {
+        open_all_cards_count--;
+        OpenAllCardsText();
+        open_all_cards_button.disabled = true;
+        cards.map((item) => {
+            if(item.style.transform !== "rotateY(90deg)"){
+                item.style = `
+                transform:rotateY(180deg);
+                transition: 1s ease;
+                pointer-events: none;
+                `   
+            }
+        });
+        setTimeout(() => {
+            cards.map((item) => {
+                if(item.style.transform !== "rotateY(90deg)"){
+                    item.style = `
+                    transform:rotateY(0deg);
+                    transition: 1s ease;
+                    `
+                }
+            });
+            open_all_cards_button.disabled = false;
+        }, 2000);
+    }
+}
+
 
 // Card flip and Check functions
 
@@ -180,8 +222,8 @@ const Cards_flip = (callback) => {
                                 turns_count--;
                                 TurnsCountText();
 
-                                if(turns_count <= 0){
-                                    end_game_text.innerText = "You are lose!"; 
+                                if (turns_count <= 0) {
+                                    end_game_text.innerText = "You are lose!";
                                     end_game.style.top = "30%";
                                 }
 
@@ -208,7 +250,7 @@ const Cards_flip = (callback) => {
                                     score++;
 
                                     if (score === 12) {
-                                        end_game_text.innerText = "You are win!"; 
+                                        end_game_text.innerText = "You are win!";
                                         end_game.style.top = "30%";
                                     }
 
