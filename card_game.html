@@ -19,11 +19,11 @@
         </div>
     </div>
     <div class="main">
-
+        <h1 class="game_main_title">Fruit card game</h1>
         <div class="level_and_turns">
             <div id="levels">
                 Levels:
-                <select id="select_level" onchange="findOption(this)">
+                <select id="select_level" class="select_level" onchange="findOption(this)">
                     <option value="easy" id="option">Easy</option>
                     <option value="middle" id="option">Middle</option>
                     <option value="hard" id="option">Hard</option>
@@ -31,7 +31,7 @@
             </div>
             <button class="open_all_cards" id="open_all_cards" onclick="OpenAllCards()">Open all cards</button>
             <div class="turns" id="turns">
-                Turns:
+                <p class="turns_text" id="turns_text">Turns:</p>
             </div>
         </div>
 

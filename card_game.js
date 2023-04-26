@@ -1,9 +1,9 @@
-//<<<<<<< HEAD
+// 
 
 // Select and Turns count container
 
 let select_level = document.getElementById("select_level");
-let turns = document.getElementById("turns");
+let turns = document.getElementById("turns_text");
 let open_all_cards_button = document.getElementById("open_all_cards");
 let turns_count = 40;
 let open_all_cards_count = 2;
@@ -49,6 +49,7 @@ function OpenAllCardsText() {
 OpenAllCardsText();
 
 
+
 // Fruit images 
 
 let BackCards = [];
@@ -74,6 +75,7 @@ let reload_button = document.getElementById("game_reload");
 
 
 // Reload game function
+
 
 let end_game_text = document.getElementById("end_game_text");
 
