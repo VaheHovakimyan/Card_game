@@ -2,6 +2,12 @@ body {
     margin: 0;
 }
 
+.main_article {
+    background: linear-gradient(90deg, rgb(197, 170, 48), rgb(122, 97, 14));
+    height: 100vh;
+    width: 100vw;
+}
+
 .main {
     display: flex;
     justify-content: center;
@@ -11,16 +17,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient( 90deg,rgb(197, 170, 48), rgb(122, 97, 14));
-    height: 100vh;
-    width: 100vw;
+    width: 54vw;
 }
 
-.game_main_title{
+.game_main_title {
     margin: 15px;
     font-size: 45px;
     font-weight: 800;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: linear-gradient(135deg, #2e8323, #6a158b);
     background-clip: text;
     -webkit-background-clip: text;
@@ -32,7 +36,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 52vw;
+    /* width: 52vw; */
+    width: inherit;
     user-select: none;
     margin: 20px;
     font-size: 19px;
@@ -41,11 +46,11 @@ body {
     color: black;
 }
 
-.select_level{
+.select_level {
     width: 150px;
     height: 30px;
     font-size: 12px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, serif;
     font-weight: 600;
     border: 2px white solid;
     border-radius: 10px;
@@ -59,7 +64,7 @@ body {
     width: 150px;
     height: 30px;
     font-size: 12px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, serif;
     font-weight: 600;
     border: 2px white solid;
     border-radius: 10px;
@@ -68,7 +73,7 @@ body {
     cursor: pointer;
 }
 
-.turns{
+.turns {
     position: relative;
     width: 110px;
     height: 30px;
@@ -78,24 +83,34 @@ body {
     color: white;
 }
 
-.turns_text{
+.turns_text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 12px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, serif;
     margin: 0;
     font-weight: 600;
 }
 
-.card_div {
-    width: 684px;
-    height: 456px;
+.card_div_to_center {
+    border: 0.7px white solid;
+    border-radius: 10px;
+}
+
+.card_div_flex {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+}
+
+.card_div {
+    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    border: 0.7px white solid;
     border-radius: 10px;
 }
 
@@ -183,4 +198,99 @@ body {
     font-size: 22px;
     color: white;
     cursor: pointer;
+}
+
+@media only screen and (max-width:1300px) {
+    .card {
+        width: 70px;
+        height: 70px;
+        margin: 6px;
+    }
+    .card_front {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media only screen and (max-width:900px) {
+    .level_and_turns {
+        flex-direction: column;
+        font-size: 19px;
+    }
+
+    .select_level {
+        margin: 5px;
+    }
+    
+    .open_all_cards {
+        margin: 5px;
+    }
+    
+    .turns {
+        margin: 5px;
+    }
+}
+
+@media only screen and (max-width:800px) {
+    .card {
+        width: 50px;
+        height: 50px;
+        margin: 4px;
+    }
+    .card_front {
+        width: 50px;
+        height: 50px;
+    }
+    .game_main_title {
+        margin: 15px;
+        font-size: 35px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .card {
+        width: 45px;
+        height: 45px;
+        margin: 4px;
+    }
+    .card_front {
+        width: 45px;
+        height: 45px;
+    }
+    .game_main_title {
+        margin: 15px;
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width:400px) {
+    .card {
+        width: 33px;
+        height: 33px;
+        margin: 3px;
+    }
+    .card_front {
+        width: 33px;
+        height: 33px;
+    }
+    .game_main_title {
+        margin: 15px;
+        font-size: 17.5px;
+    }
+}
+
+@media only screen and (max-width:320px) {
+    .card {
+        width: 30px;
+        height: 30px;
+        margin: 3px;
+    }
+    .card_front {
+        width: 30px;
+        height: 30px;
+    }
+    .game_main_title {
+        margin: 12px;
+        font-size: 15px;
+    }
 }
